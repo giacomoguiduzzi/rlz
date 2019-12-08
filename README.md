@@ -1,3 +1,2 @@
-# cds-template
-
-Template for creating a Compact Data Structure project using SDSL library.
+# rlz
+Relative Lempel Ziv on Integers
