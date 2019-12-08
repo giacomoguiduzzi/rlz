@@ -1,4 +1,5 @@
-dataset*
-*build*
+cmake-build-debug/
+datasets/
+build/
 .idea*
 .DS_Store/

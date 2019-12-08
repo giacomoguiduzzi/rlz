@@ -1,7 +1,7 @@
 /***
 BSD 2-Clause License
 
-Copyright (c) 2018, <author_name>
+Copyright (c) 2018, Adrián
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without
@@ -26,24 +26,22 @@ OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 **/
 
-#include <table_bitmap.hpp>
+//
+// Created by adrian on 15/11/18.
+//
 
-using namespace cds;
+#ifndef RCT_CONFIG_UTIL_HPP
+#define RCT_CONFIG_UTIL_HPP
 
-int main(){
+#include <cstdint>
 
-    std::vector<std::pair<uint32_t, uint32_t>> input = {{1,3}, {4,5}, {5,6}, {9,7}, {14,2}};
+namespace util {
 
-    table_bitmap<uint32_t> tb(input);
 
-    for(uint64_t i = 0; i < 15; ++i){
-        auto exists = tb.exist(i);
-        std::cout << "Key " << i << " exists: " << exists;
-        if(exists){
-           std::cout << " and contains: " << tb[i];
-        }
-        std::cout << std::endl;
+    namespace config {
+
+        const uint64_t BUFFER_BLOCK_SIZE = (uint64_t)1<<22;
     }
-
-    std::cout << "Size of the structure: " << sdsl::size_in_bytes(tb) << " bytes. "<< std::endl;
 }
+
+#endif

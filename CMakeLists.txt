@@ -9,7 +9,7 @@ set(PROJECT_CONTACT "project_contact")
 
 
 #Change to "Debug" when you need it
-set(CMAKE_BUILD_TYPE "Release")
+set(CMAKE_BUILD_TYPE "Debug")
 
 # C++11 compiler Check
 if(NOT CMAKE_CXX_COMPILER_VERSION) # work around for cmake versions smaller than 2.8.10
@@ -57,5 +57,9 @@ include_directories("${PROJECT_SOURCE_DIR}/external/googletest/include"
         )
 
 
-add_executable(template_executable src/main.cpp)
-target_link_libraries(template_executable sdsl divsufsort divsufsort64)
+add_executable(rlz src/rlz.cpp)
+target_link_libraries(rlz sdsl divsufsort divsufsort64)
+
+add_executable(random_integers src/random_integers.cpp)
+target_link_libraries(random_integers sdsl divsufsort divsufsort64)
+
