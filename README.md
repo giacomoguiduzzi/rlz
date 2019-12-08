@@ -3,7 +3,7 @@ Relative Lempel Ziv on Integers
 
 ### Download
 ````
-git clone <>
+git clone https://github.com/adriangbrandon/rlz.git
 ````
 ### Compile
 ````
