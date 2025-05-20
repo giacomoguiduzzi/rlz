@@ -54,7 +54,7 @@ else ()
     message(STATUS "CPU does NOT support SSE4.2")
 endif ()
 
-add_subdirectory(external/sdsl-lite)
+add_subdirectory(external/sdsl-lite-custom)
 
 include_directories("${PROJECT_SOURCE_DIR}/external/googletest/include"
         ${CMAKE_HOME_DIRECTORY}/include
