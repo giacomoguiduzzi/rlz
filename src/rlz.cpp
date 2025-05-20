@@ -32,7 +32,7 @@ int main(int argc, const char* argv[]) {
             }
         }
 
-        rlz_type m_rlz(movements,  size_ref, size_block);
+        rlz_type m_rlz(movements, size_ref, size_block);
         m_rlz.init_factorization(&movements);
 
         std::vector<typename rct::rlz_csa_bc_int64::factor_type> factors;
