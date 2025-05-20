@@ -16,6 +16,7 @@ namespace rct {
     class reference_uniform_sample {
 
     public:
+        static constexpr uint64_t default_block_size = block_size_default;
         typedef uint64_t size_type;
         typedef t_value value_type;
         typedef typename std::vector<value_type>::iterator iterator;
@@ -31,7 +32,7 @@ namespace rct {
         reference_uniform_sample() = default;
 
         reference_uniform_sample(const std::vector<value_type> &container,
-                                 const size_type reference_size, const size_type block_size = block_size_default,
+                                 const size_type reference_size, const size_type block_size = default_block_size,
                                  const double_t ratio = 0){
 
             auto ref_length = reference_size / sizeof(value_type);
