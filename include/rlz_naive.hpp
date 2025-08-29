@@ -28,7 +28,7 @@ namespace rct {
         typedef t_reference reference_type;
         typedef t_value value_type;
         typedef t_csa csa_type;
-        typedef typename csa_type::size_type size_type;
+        typedef csa_type::size_type size_type;
         typedef std::unordered_map<size_type, size_type> char2comp_type;
 
     private:
@@ -71,6 +71,10 @@ namespace rct {
 
             m_input = nullptr;
 
+            // debug
+            // m_input is null at this point, how can I see what values is the values does the original vector have?
+            // for (auto it = m_input.begin(); m_input != m_input.end; ++it) if (*it < 0) std::cout << *it << " ";
+
             const std::string file_rev_reference = std::to_string(getpid()) + ".rev_ref"; {
                 std::map<size_type, size_type> D;
                 // count occurrences of each symbol
@@ -82,7 +86,6 @@ namespace rct {
                         ++st;
                     }
                 }
-                std::cout << "Values equal to 0: " << st << std::endl;
 
                 size_type index = 1;
                 for (auto it = D.begin(); it != D.end(); ++it) {
@@ -90,17 +93,14 @@ namespace rct {
                     ++index;
                 }
                 m_char2comp[0] = 0;
-                sdsl::int_vector<> rev_reference;
-                rev_reference.resize(m_reference.size());
+                sdsl::int_vector<> rev_reference(m_reference.size());
+                //  rev_reference.resize(m_reference.size());
                 for (size_type i = 0; i < rev_reference.size(); ++i) {
                     auto value = *(m_reference.begin() + m_reference.size() - 1 - i);
                     rev_reference[i] = m_char2comp[value];
                 }
                 sdsl::store_to_plain_array<value_type>(rev_reference, file_rev_reference);
             }
-            std::cout << "building SA " << std::endl;
-            sdsl::construct(m_csa, file_rev_reference.c_str(), sizeof(size_type));
-            std::cout << "done" << std::endl;
         }
 
 
@@ -203,7 +203,8 @@ namespace rct {
             return *this;
         }
 
-        size_type serialize(std::ostream &out, sdsl::structure_tree_node *v = nullptr, const std::string& name = "") const {
+        size_type serialize(std::ostream &out, sdsl::structure_tree_node *v = nullptr,
+                            const std::string &name = "") const {
             sdsl::structure_tree_node *child = sdsl::structure_tree::add_child(v, name, sdsl::util::class_name(*this));
             size_type written_bytes = 0;
             m_reference.serialize(out, child, "reference");
