@@ -209,8 +209,8 @@ namespace rct {
             size_type written_bytes = 0;
             m_reference.serialize(out, child, "reference");
             m_csa.serialize(out, child, "csa");
-            sdsl::write_member(m_input_pos, out, child, "input_pos");
-            sdsl::write_member(m_input_size, out, child, "input_size");
+            written_bytes += sdsl::write_member(m_input_pos, out, child, "input_pos");
+            written_bytes += sdsl::write_member(m_input_size, out, child, "input_size");
             sdsl::structure_tree::add_size(child, written_bytes);
             return written_bytes;
         }
